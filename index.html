@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TimeHub</title>
+  <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body id="mode">
+
+  <main class="min-h-screen bg-base-200">
+
+    <!-- ========================= -->
+    <!-- Navigation -->
+    <!-- ========================= -->
+
+    <section id="navigation"
+      class="sticky top-0 z-50 border-b border-base-content/5 bg-base-200/90 px-4 py-3 backdrop-blur">
+      <div class="mx-auto flex max-w-7xl items-center justify-center gap-3">
+
+        <div class="flex w-full max-w-2xl overflow-x-auto rounded-2xl bg-base-100 p-1 shadow-sm">
+
+          <button class="nav-btn flex-1 whitespace-nowrap rounded-xl px-4 py-2 text-sm font-medium transition"
+            data-page="clockSection">
+            Clock
+          </button>
+
+          <button class="nav-btn flex-1 whitespace-nowrap rounded-xl px-4 py-2 text-sm font-medium transition"
+            data-page="stopwatchSection">
+            Stopwatch
+          </button>
+
+          <button class="nav-btn flex-1 whitespace-nowrap rounded-xl px-4 py-2 text-sm font-medium transition"
+            data-page="timerSection">
+            Timer
+          </button>
+
+          <button class="nav-btn flex-1 whitespace-nowrap rounded-xl px-4 py-2 text-sm font-medium transition"
+            data-page="alarmSection">
+            Alarm
+          </button>
+
+          <button class="nav-btn flex-1 whitespace-nowrap rounded-xl px-4 py-2 text-sm font-medium transition"
+            data-page="worldclockSection">
+            World Clock
+          </button>
+
+        </div>
+
+        <button id="themeToggle" class="btn btn-ghost btn-square shrink-0 rounded-xl" aria-label="Toggle theme">
+          <i id="themeIcon" class="fa-solid fa-moon"></i>
+        </button>
+
+        <button id="fullscreenToggle" class="btn btn-ghost btn-square shrink-0 rounded-xl"
+          aria-label="Toggle fullscreen">
+          <i id="fullscreenIcon" class="fa-solid fa-expand"></i>
+        </button>
+
+      </div>
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- Clock -->
+    <!-- ========================= -->
+
+    <section id="clockSection" class="page hidden min-h-[calc(100vh-73px)] px-4 py-10">
+
+      <div class="flex min-h-[calc(100vh-153px)] items-center justify-center">
+
+        <div class="w-full max-w-4xl">
+
+          <div class="rounded-3xl bg-base-100 p-8 text-center shadow-sm ring-1 ring-base-content/5 sm:p-12">
+
+            <p class="text-sm font-medium uppercase tracking-[0.2em] text-base-content/40">
+              Local Time
+            </p>
+
+            <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+
+              <p id="clock" class="text-5xl font-semibold tracking-tight sm:text-7xl lg:text-8xl">
+                00:00:00
+              </p>
+
+              <span id="ampm" class="rounded-full bg-base-200 px-3 py-1 text-sm font-semibold text-base-content/60">
+                AM
+              </span>
+
+            </div>
+
+            <p id="date" class="mt-4 text-base text-base-content/50 sm:text-lg">
+              Loading date...
+            </p>
+
+            <p id="local" class="mt-2 text-sm font-medium text-base-content/40">
+              UTC+1
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- Stopwatch -->
+    <!-- ========================= -->
+
+    <section id="stopwatchSection" class="page hidden min-h-[calc(100vh-73px)] px-4 py-10">
+
+      <div class="flex min-h-[calc(100vh-153px)] items-center justify-center">
+
+        <div class="w-full max-w-3xl">
+
+          <div class="rounded-3xl bg-base-100 p-8 text-center shadow-sm ring-1 ring-base-content/5 sm:p-12">
+
+            <p class="text-sm font-medium uppercase tracking-[0.2em] text-base-content/40">
+              Stopwatch
+            </p>
+
+            <p id="stopwatchDisplay"
+              class="mt-8 break-all font-mono text-4xl font-semibold tracking-tight sm:text-6xl lg:text-7xl">
+              00:00:00.000
+            </p>
+
+            <div class="mt-10 flex flex-wrap justify-center gap-3">
+
+              <button id="startBtn" class="btn rounded-xl px-6">
+                Start
+              </button>
+
+              <button id="pauseBtn" class="btn btn-ghost rounded-xl px-6">
+                Pause
+              </button>
+
+              <button id="resetBtn" class="btn btn-ghost rounded-xl px-6">
+                Reset
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- Timer -->
+    <!-- ========================= -->
+
+    <section id="timerSection" class="page hidden min-h-[calc(100vh-73px)] px-4 py-10">
+
+      <div class="flex min-h-[calc(100vh-153px)] items-center justify-center">
+
+        <div class="w-full max-w-3xl">
+
+          <div class="rounded-3xl bg-base-100 p-8 text-center shadow-sm ring-1 ring-base-content/5 sm:p-12">
+
+            <p class="text-sm font-medium uppercase tracking-[0.2em] text-base-content/40">
+              Timer
+            </p>
+
+            <p id="timerDisplay" class="mt-8 font-mono text-5xl font-semibold tracking-tight sm:text-7xl">
+              00:00:00
+            </p>
+
+            <div class="mt-10 grid grid-cols-1 gap-3 sm:grid-cols-3">
+
+              <label class="form-control">
+
+                <div class="label justify-center">
+                  <span class="label-text text-xs text-base-content/50">
+                    Hours
+                  </span>
+                </div>
+
+                <input id="timerHours" type="number" min="0" value="0" class="input w-full rounded-xl text-center">
+
+              </label>
+
+
+              <label class="form-control">
+
+                <div class="label justify-center">
+                  <span class="label-text text-xs text-base-content/50">
+                    Minutes
+                  </span>
+                </div>
+
+                <input id="timerMinutes" type="number" min="0" max="59" value="0"
+                  class="input w-full rounded-xl text-center">
+
+              </label>
+
+
+              <label class="form-control">
+
+                <div class="label justify-center">
+                  <span class="label-text text-xs text-base-content/50">
+                    Seconds
+                  </span>
+                </div>
+
+                <input id="timerSeconds" type="number" min="0" max="59" value="0"
+                  class="input w-full rounded-xl text-center">
+
+              </label>
+
+            </div>
+
+            <div class="mt-8 flex flex-wrap justify-center gap-3">
+   
+              <button  id="timerStartBtn" class="btn rounded-xl px-6">
+                Start
+              </button>
+
+              <button id="timerPauseBtn" class="btn btn-ghost rounded-xl px-6">
+                Pause
+              </button>
+
+              <button id="timerResetBtn" class="btn btn-ghost rounded-xl px-6">
+                Reset
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- Alarm -->
+    <!-- ========================= -->
+
+    <section id="alarmSection" class="page hidden min-h-[calc(100vh-73px)] px-4 py-10">
+
+      <div class="flex min-h-[calc(100vh-153px)] items-center justify-center">
+
+        <div class="w-full max-w-3xl">
+
+          <div class="rounded-3xl bg-base-100 p-8 shadow-sm ring-1 ring-base-content/5 sm:p-10">
+
+            <div class="text-center">
+
+              <p class="text-sm font-medium uppercase tracking-[0.2em] text-base-content/40">
+                Alarm
+              </p>
+
+              <h1 class="mt-3 text-2xl font-semibold">
+                Set an alarm
+              </h1>
+
+            </div>
+
+
+            <div class="mt-8 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+
+              <input id="alarmTime" type="time" class="input input-lg w-full max-w-xs rounded-xl">
+
+              <button id="setAlarmBtn" class="btn w-full rounded-xl sm:w-auto">
+                Set Alarm
+              </button>
+
+            </div>
+
+
+            <div class="mt-8 rounded-2xl bg-base-200 p-5 text-center">
+
+              <p id="alarmStatus" class="text-sm font-medium text-base-content/60">
+                No alarm set
+              </p>
+
+              <div id="alarmList" class="mt-3">
+              </div>
+
+            </div>
+
+
+            <div class="mt-6 flex flex-wrap justify-center gap-3">
+
+              <button id="stopAlarmBtn" class="btn btn-ghost rounded-xl">
+                Stop
+              </button>
+
+              <button id="clearAlarmBtn" class="btn btn-ghost rounded-xl">
+                Clear
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- World Clock -->
+    <!-- ========================= -->
+
+    <section id="worldclockSection" class="page hidden min-h-[calc(100vh-73px)] px-4 py-10">
+
+      <div class="mx-auto w-full max-w-7xl">
+
+        <div class="mb-8">
+
+          <h1 class="text-3xl font-semibold tracking-tight">
+            World Clock
+          </h1>
+
+          <p class="mt-1 text-sm text-base-content/60">
+            Current local time around the world
+          </p>
+
+        </div>
+
+
+        <div id="worldClockContainer" class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>
